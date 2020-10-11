@@ -1,0 +1,28 @@
+<div *ngIf="bubbleChartData">
+  <div *ngIf="bubbleChartData.length < 1">
+    <h5>Not enough data uploaded</h5>
+    <p>You can upload more data <a routerLink="/upload">here.</a></p>
+  </div>
+  <div *ngIf="!(bubbleChartData.length < 1)" class="card mb-3">
+    <div class="card-header">
+      <i class="fas fa-chart-pie"></i>
+      {{ bubbleTitle }}
+    </div>
+    <div class="card-body">
+      {{description}}
+      <hr>
+    </div>
+    <div class="card-body">
+      <canvas
+        baseChart
+        [datasets]="bubbleChartData"
+        [options]="bubbleChartOptions"
+        [colors]="bubbleChartColors"
+        [legend]="bubbleChartLegend"
+        [chartType]="bubbleChartType"
+      >
+      </canvas>
+    </div>
+    <div class="card-footer small text-muted"></div>
+  </div>
+</div>

@@ -1,0 +1,36 @@
+<div class="customers">
+    <h5>Insert Customer SpreadSheet</h5>
+    <div>
+      <input
+        #customersInput
+        type="file"
+        ng2FileSelect
+        [uploader]="uploaderCustomers"
+      />
+  
+      <div
+        class="drop-box"
+        ng2FileDrop
+        [ngClass]="{ dragover: isDropOver }"
+        [uploader]="uploaderCustomers"
+        (fileOver)="fileOverAnother($event)"
+        (click)="customersFileClicked()"
+      >
+        <span class="drag-in-title">Import or drag file here</span>
+        <span class="drag-over-title">Drop the file</span>
+      </div>
+    </div>
+    <div class="upload-response">
+      <div id="customersError"></div>
+    </div>
+  </div>
+  
+  <!--/.uploadDiv-->
+  <div class="alert alert-success" *ngIf="uploadSuccess">
+    <h6>File: {{ file.name }} - File size: {{ file.size / 1000 }}kb</h6>
+  </div>
+  <div class="alert alert-danger" *ngIf="uploadError">
+    <h6>Error in loading the file</h6>
+  </div>
+  <app-spinner-load *ngIf="isLoading"></app-spinner-load>
+  

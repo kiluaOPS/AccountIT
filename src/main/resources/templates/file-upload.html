@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+
+<head th:replace="common/header :: common-header"/>
+<head>
+    <link rel="stylesheet" href="/css/file-upload.css"/>
+</head>
+
+<body id="page-top">
+
+<div th:replace="common/header :: navbar"/>
+
+
+<div id="wrapper">
+
+    <div th:replace="common/header :: sidebar"/>
+
+    <div id="content-wrapper">
+
+        <div class="container-fluid">
+
+            <!-- Breadcrumbs-->
+            <ol class="breadcrumb">
+                <li class="breadcrumb-item">
+                    <a href="index.html">Dashboard</a>
+                </li>
+                <li class="breadcrumb-item active">Upload file</li>
+            </ol>
+            <div class="row">
+                <div class="uploadDiv row ">
+                    <div class="intro col-10">
+                        <h3>Upload File</h3>
+                        <p>Uploading of files must follow the following order:</p>
+                            <h6>Customers</h6>
+                            <h6>Appointments</h6>
+                        <hr/>
+                    </div>
+
+                    <div class="col-5 customers">
+                        <h5>Insert Customer SpreadSheet</h5>
+                        <form id="customerForm" name="customerForm">
+                            <input id="customerInput" type="file" name="file" class="file-input"
+                                   accept=".csv, application/vnd.openxmlformats-officedocument.spreadsheetml.sheet, application/vnd.ms-excel"
+                                   required/>
+                            <button type="submit" class="primary submit-btn"><i
+                                    class="fas fa-fw fa-arrow-circle-up"></i>Submit Customers
+                            </button>
+                        </form>
+                        <div class="upload-response">
+                            <div id="customerError"></div>
+
+                        </div>
+                    </div>
+
+                    <div class="col-5 appointments">
+                        <h5>Insert Appointments SpreadSheet</h5>
+                        <form id="appointForm" name="appointForm">
+                            <input id="appointInput" type="file" name="file" class="file-input"
+                                   accept=".csv, application/vnd.openxmlformats-officedocument.spreadsheetml.sheet, application/vnd.ms-excel"
+                                   required/>
+                            <button type="submit" class="primary submit-btn"><i
+                                    class="fas fa-fw fa-arrow-circle-up"></i>Submit Appointments
+                            </button>
+                        </form>
+                        <div class="upload-response">
+                            <div id="appointError"></div>
+
+                        </div>
+                    </div>
+
+                </div>
+
+
+            </div>
+            <!--/.uploadDiv-->
+            <div id="customerSuccess"></div>
+            <div id="appointSuccess"></div>
+
+            <div th:replace="common/header :: footer"/>
+        </div>
+        <!--/.container-fluid-->
+        <table class="table">
+
+        </table>
+
+    </div>
+    <!-- /.content-wrapper -->
+
+</div>
+<!-- /#wrapper -->
+
+<div th:replace="common/header :: scroll-up"/>
+
+<div th:replace="common/header :: footer-script"/>
+
+<script th:src="@{/js/upload-customers.js}"></script>
+<script th:src="@{/js/upload-appointments.js}"></script>
+
+</body>
+
+</html>

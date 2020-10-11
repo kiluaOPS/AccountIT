@@ -1,0 +1,28 @@
+<div *ngIf="events">
+  <div *ngIf="events.length < 1" class="container">
+    <div class="card mb-3">
+      <div class="card-header">
+        <i class="fas fa-chart-bar"></i>
+        More data needed
+      </div>
+      <div class="card-body">
+        <p>You can upload more data <a routerLink="/events">here.</a></p>
+      </div>
+      <div class="card-footer small text-muted"></div>
+    </div>
+  </div>
+  <div *ngIf="events.length > 0">
+    <h4>Select the Event you want to display</h4>
+    <label for="options">Event id: </label>
+    <select (change)="onChange($event)" class="form-control" id="options">
+      <option value="" disabled selected>Select your option</option>
+      <option *ngFor="let event of events" [value]="event.id">
+        {{ event.id }}
+      </option>
+    </select>
+  </div>
+  <app-single-event
+    *ngIf="eventSelected"
+    [eventId]="eventSelected"
+  ></app-single-event>
+</div>

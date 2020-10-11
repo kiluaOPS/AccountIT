@@ -1,0 +1,32 @@
+<div class="clinics">
+    <h5>Insert Clinics SpreadSheet</h5>
+    <div>
+      <input
+        #clinicsInput
+        type="file"
+        ng2FileSelect
+        [uploader]="uploaderClinics"
+      />
+  
+      <div
+        class="drop-box"
+        ng2FileDrop
+        [ngClass]="{ dragover: isDropOver }"
+        [uploader]="uploaderClinics"
+        (fileOver)="fileOverAnother($event)"
+        (click)="clinicsFileClicked()"
+      >
+        <span class="drag-in-title">Import or drag file here</span>
+        <span class="drag-over-title">Drop the file</span>
+      </div>
+    </div>
+    <div class="upload-response">
+      <div id="clinicsError"></div>
+    </div>
+  </div>
+  
+  <!--/.uploadDiv-->
+  <div class="alert alert-success" *ngIf="uploadSuccess">
+    <h6>File: {{ file.name }} - File size: {{ file.size / 1000 }}kb</h6>
+  </div>
+  

@@ -1,0 +1,86 @@
+<div class="card">
+  <div class="card-header">
+    <h1>Customer Form</h1>
+    <div class="card-body">
+      <form #eventForm="ngForm" (submit)="onSubmit()">
+        <div class="form-group">
+          <label for="name">First name:</label>
+          <input
+            type="text"
+            class="form-control"
+            id="name"
+            required
+            [(ngModel)]="model.firstName"
+            name="name"
+          />
+        </div>
+
+        <div class="form-group">
+          <label for="last-name">Last name:</label>
+          <input
+            type="text"
+            class="form-control"
+            id="last-name"
+            required
+            [(ngModel)]="model.lastName"
+            name="last-name"
+          />
+        </div>
+
+        <div class="form-group">
+          <label for="address">Postcode:</label>
+          <input
+            type="text"
+            class="form-control"
+            id="address"
+            required
+            [(ngModel)]="model.address"
+            name="address"
+          />
+        </div>
+
+        <div class="form-group">
+                <label for="ref-type">How did he/she got to know about the clinic?</label>
+                <input
+                  type="text"
+                  class="form-control"
+                  id="ref-type"
+                  required
+                  [(ngModel)]="model.refType"
+                  name="ref-type"
+                />
+              </div>
+
+        <div class="form-group">
+          <label for="email">Email:</label>
+          <input
+            type="text"
+            class="form-control"
+            id="email"
+            required
+            [(ngModel)]="model.email"
+            name="email"
+          />
+        </div>
+
+        <div class="form-group">
+          <label for="date-input">Date of Birth:</label>
+          <input
+            [(ngModel)]="model.dob"
+            name="date"
+            class="form-control"
+            type="date"
+            value="2011-08-19"
+            required
+          />
+        </div>
+        <div class="alert alert-danger" *ngIf="invalid">
+          <h6>Invalid Event, make sure the postcode is valid.</h6>
+        </div>
+        <button type="submit" class="btn btn-success">
+          Create Customer
+        </button>
+      </form>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,16 @@
+<div class="row">
+  <div class="col-6">
+    <app-referral-influence></app-referral-influence>
+  </div>
+  <div class="col-6">
+    <app-filling-rates></app-filling-rates>
+  </div>
+</div>
+<div *ngIf="customers">
+  <h5>
+    Section below shows all those customers that did not came back after the
+    first 1 or 2 treatments.
+  </h5>
+
+  <app-customers-list [customers]="customers"></app-customers-list>
+</div>

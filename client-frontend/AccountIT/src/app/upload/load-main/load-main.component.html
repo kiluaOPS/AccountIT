@@ -1,0 +1,35 @@
+<div id="content-wrapper">
+  <div class="container-fluid">
+    <!-- Breadcrumbs-->
+    <div class="container">
+      <div class="row">
+        <div class="uploadDiv row ">
+          <div class="intro col-10">
+            <h3>Upload File</h3>
+            <p>While Uploading files consider that injuries and customers files should be uploaded before the appointments CSV. </p>
+            <p>
+              If you are interested in knowing the table format needed for each
+              CSV file you can find it
+              <a [routerLink]="['/help']">here</a>
+            </p>
+            <hr />
+          </div>
+          <div class="a col-6">
+            <app-customers-upload></app-customers-upload>
+          </div>
+          <div class="a col-6">
+              <app-appointments-upload></app-appointments-upload>
+          </div>
+
+          <div class="a col-6">
+              <app-injuries-upload></app-injuries-upload>
+          </div>
+          <div class="a col-6">
+              <app-events-upload></app-events-upload>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+

@@ -1,0 +1,65 @@
+<div id="content-wrapper">
+    <div class="container-fluid">
+
+        <!-- Breadcrumbs-->
+        <ol class="breadcrumb">
+            <li class="breadcrumb-item">
+                <a href="#">Dashboard</a>
+            </li>
+            <li class="breadcrumb-item active">Customers</li>
+        </ol>
+
+        <!-- if here -->
+        <div *ngIf="!customers">
+            <h3>No customers uploaded until now</h3>
+        </div>
+
+
+        <!-- Page Content -->
+        <!-- else here -->
+        <div *ngIf="customers">
+            <h5>Customer List</h5>
+            <table class="table table-bordered">
+                <thead>
+                <tr>
+                    <th>ID</th>
+                    <th>Name</th>
+                    <th>Surname</th>
+                    <th>Date</th>
+                    <th>Address</th>
+                    <th>Email</th>
+                    <th>Referred</th>
+
+                </tr>
+                </thead>
+                <tbody>
+                    <!-- for here -->
+                <tr *ngFor="let customer of customers; let i = index">
+                    <td><button (click)="requestGetCustomerById(customer.id)">{{customer.id}}</button></td>
+                    <td>{{customer.firstName}}</td>
+                    <td>{{customer.lastName}}</td>
+                    <td>{{customer.dob}}</td>
+                    <td>{{customer.email}}</td>
+                    <td>{{customer.refType}}</td>
+                    <td>{{customer.address}}</td>
+                    <td>
+                        <button class="delete-button" id="customer.id"
+                                (click)="requestDeleteCustomerById(customer.id, i)">
+                            <i class="fa fa-trash">
+                            </i>
+                        </button>
+                    </td>
+                </tr>
+                </tbody>
+            </table>
+        </div>
+
+
+
+    </div>
+    <!-- /.container-fluid -->
+
+</div>
+<!-- /.content-wrapper -->
+
+

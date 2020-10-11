@@ -1,0 +1,75 @@
+<div class="card" style="background-color: white" *ngIf="clinic">
+  <div class="card-header">
+    <h1>Clinic Settings Update</h1>
+  </div>
+  <div class="card-body">
+    <form #eventForm="ngForm" (submit)="onSubmit()">
+      <div class="row">
+        <div class="col-6">
+          <label for="name">Clinic name:</label>
+          <input
+            type="text"
+            class="form-control"
+            id="name"
+            required
+            [(ngModel)]="clinic.clinicName"
+            name="name"
+          />
+        </div>
+        <div class="col-6">
+          <label for="week-slots">Number of slot available on average every week:</label>
+          <input
+            type="text"
+            class="form-control"
+            id="week-slots"
+            required
+            [(ngModel)]="clinic.averageWeekSlots"
+            name="week-slots"
+          />
+        </div>
+        <div class="col-6">
+          <label for="month-break">Months after which a customer is considered as not coming back:</label>
+          <input
+            type="text"
+            class="form-control"
+            id="month-break"
+            required
+            [(ngModel)]="clinic.monthPeriodBreak"
+            name="month-break"
+          />
+        </div>
+        <div class="col-6">
+          <label for="time-from-event">Number of months used to calculate events influence</label>
+          <input
+            type="text"
+            class="form-control"
+            id="time-from-event"
+            required
+            [(ngModel)]="clinic.timeFromEvent"
+            name="time-from-event"
+          />
+        </div>
+        <div class="col-6">
+          <label for="max_number-days">Maximum number of days between appointments after which they belong to a new set:</label>
+          <input
+            type="text"
+            class="form-control"
+            id="max_number-days"
+            required
+            [(ngModel)]="clinic.maxNumberOfDays"
+            name="max_number-days"
+          />
+        </div>
+
+        <div class="col-12" style="margin-top: 40px;">
+          <button type="submit" class="btn btn-success btn-block">
+            Update Clinic
+          </button>
+        </div>
+      </div>
+    </form>
+    <div class="alert alert-danger" *ngIf="invalid">
+      <h6>Invalid Clinic</h6>
+    </div>
+  </div>
+</div>

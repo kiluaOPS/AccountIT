@@ -1,0 +1,72 @@
+<!-- Page Content -->
+<!-- else here -->
+<br />
+<div *ngIf="events">
+  <div class="container">
+    <div *ngIf="events.length < 1" class="card mb-3">
+      <div class="card-header">
+        <i class="fas fa-chart-bar"></i>
+        More data needed
+      </div>
+      <div class="card-body">
+        <p>You can upload more data <a routerLink="/events">here.</a></p>
+      </div>
+      <div class="card-footer small text-muted"></div>
+    </div>
+  </div>
+  <div *ngIf="events.length >= 1">
+    <div class="card mb-3">
+      <div class="card-header">
+        <i class="fas fa-table"></i>
+        Events
+      </div>
+      <div class="card-body">
+        <div class="table-responsive" id="div-table">
+          <table
+            id="dataTable"
+            class="table table-bordered"
+            width="100%"
+            cellspacing="0"
+          >
+            <thead>
+              <tr>
+                <th>EventID</th>
+                <th>Name</th>
+                <th>Date</th>
+                <th>Address</th>
+                <th>Delete</th>
+              </tr>
+            </thead>
+            <tfoot>
+              <tr>
+                <th>EventID</th>
+                <th>Name</th>
+                <th>Date</th>
+                <th>Address</th>
+                <th>Delete</th>
+              </tr>
+            </tfoot>
+            <tbody>
+              <tr *ngFor="let event of events; let i = index">
+                <td><a type="button" class="btn btn-primary" [routerLink]="[ '/marketing/events', event.id ]">{{event.id}}</a></td>
+                <td>{{ event.name }}</td>
+                <td>{{ event.date }}</td>
+                <td>{{ event.address }}</td>
+                <td>
+                  <button
+                    class="btn btn-link delete-button"
+                    id="event.id"
+                    (click)="requestDeleteEventById(event.id, i)"
+                  >
+                    <i class="fa fa-trash"> </i>
+                  </button>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+      <div class="card-footer small text-muted"></div>
+    </div>
+  </div>
+</div>

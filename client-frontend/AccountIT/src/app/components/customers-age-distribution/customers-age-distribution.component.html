@@ -1,0 +1,24 @@
+<div class="container">
+  <div *ngIf="!ageDistribution" class="card mb-3">
+    <div class="card-header">
+      <i class="fas fa-chart-bar"></i>
+      More Data Needed
+    </div>
+    <div class="card-body">
+      <h5>No customers uploaded</h5>
+      <p>
+        In order to give indication on the age distribution of your patients you
+        must upload some data.
+      </p>
+      <p>You can upload more data <a routerLink="/upload">here.</a></p>
+    </div>
+    <div class="card-footer small text-muted"></div>
+  </div>
+</div>
+<app-pie-chart
+  *ngIf="ageDistribution"
+  [legend]="false"
+  [pieChartLabels]="ageIntervals"
+  [pieChartData]="ageDistribution"
+  [title]="title"
+></app-pie-chart>

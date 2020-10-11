@@ -1,0 +1,34 @@
+.customers {
+    text-align : center;
+    border : 3px solid blue;
+    border-radius: 10px;
+    padding-bottom : 20px;
+    margin-left: 20px;
+}
+
+.customers h5 {
+    padding: 25px;
+}
+
+.appointments {
+    text-align : center;
+    border : 3px solid blue;
+    border-radius: 10px;
+    padding-bottom : 20px;
+    margin-left: 20px;
+}
+
+.appointments h5 {
+    padding: 25px;
+}
+
+
+
+.intro {
+    text-align: center;
+}
+
+.uploadDiv {
+    text-align : center;
+    align: center;
+}

@@ -1,0 +1,23 @@
+<div *ngIf="radarChartData">
+  <div *ngIf="radarChartData.length < 1">
+    <h5>Not enough data uploaded</h5>
+    <p>You can upload more data <a routerLink="/upload">here.</a></p>
+  </div>
+  <div *ngIf="!(radarChartData.length < 1)" class="card mb-3">
+    <div class="card-header">
+      <i class="fas fa-chart-bar"></i>
+      {{ radarTitle }}
+    </div>
+    <div class="card-body">
+      <canvas
+        baseChart
+        [datasets]="radarChartData"
+        [options]="radarChartOptions"
+        [labels]="radarChartLabels"
+        [chartType]="radarChartType"
+      >
+      </canvas>
+    </div>
+    <div class="card-footer small text-muted"></div>
+  </div>
+</div>

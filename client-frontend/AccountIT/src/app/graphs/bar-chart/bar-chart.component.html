@@ -1,0 +1,32 @@
+<div *ngIf="barChartData">
+  <div *ngIf="barChartData.length < 1">
+    <h5>Not enough data uploaded</h5>
+    <p>You can upload more data <a routerLink="/upload">here.</a></p>
+  </div>
+  <div *ngIf="!(barChartData.length < 1)" class="card mb-3">
+    <div class="card-header">
+      <i class="fas fa-chart-bar"></i>
+      {{ title }}
+    </div>
+    <div class="card-body">
+      <p>{{description}}</p>
+      <hr>
+    </div>
+    
+    <div class="card-body">
+      <canvas
+        baseChart
+        [data]="barChartData"
+        [labels]="barChartLabels"
+        [chartType]="barChartType"
+        [options]="options"
+        [colors]="barChartColors"
+        [legend] = "legend"
+      >
+      </canvas>
+    </div>
+    <div class="card-footer small text-muted"></div>
+  </div>
+</div>
+
+<!-- [colors]="barChartColors" -->

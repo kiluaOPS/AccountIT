@@ -1,0 +1,13 @@
+body {
+  background-color: #dedede;
+}
+.login {
+  max-width: 360px;
+  text-align: center;
+  margin: 0 auto;
+  padding: 1em;
+  position: absolute;
+  margin-top: 20px;
+  left: 50%;
+  transform: translate(-50%, 0%);
+}

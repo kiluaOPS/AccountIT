@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+
+<head th:replace="common/header :: common-header"/>
+
+
+<body id="page-top">
+
+<div th:replace="common/header :: navbar"/>
+
+
+<div id="wrapper">
+
+    <div th:replace="common/header :: sidebar"/>
+
+    <div id="content-wrapper">
+
+        <div class="container-fluid">
+
+            <!-- Breadcrumbs-->
+            <ol class="breadcrumb">
+                <li class="breadcrumb-item">
+                    <a th:href="@{/}">Dashboard</a>
+                </li>
+                <li class="breadcrumb-item active">Appointments</li>
+            </ol>
+
+            <div th:if="${#lists.size(appointments) == 0}">
+                <h3>No appointments uploaded until now</h3>
+            </div>
+
+            <!-- Page Content -->
+            <div th:unless="${#lists.size(appointments) == 0}">
+                <h5>Appointments List</h5>
+                <!--<table th:class="@{appointments != null} ? 'table d-none' : 'table' ">-->
+                <table class="table table-bordered">
+                    <thead>
+                    <tr>
+                        <th>ID</th>
+                        <th>Name</th>
+                        <th>Surname</th>
+                        <th>Date</th>
+                        <th>Type</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr th:each="appointment : ${appointments}">
+                        <td><a th:text="${appointment.appointmentId}"
+                               th:href="@{/appointments(id=${appointment.appointmentId})}"></a></td>
+                        <td th:text="${appointment.firstName}"></td>
+                        <td th:text="${appointment.lastName}"></td>
+                        <td th:text="${#temporals.format(appointment.date, 'yyyy-MM-dd HH:mm:ss')}"></td>
+                        <td th:text="${appointment.type}"></td>
+                        <td>
+                            <button class="delete-button" th:id="${appointment.appointmentId}"
+                                    th:onclick="'deleteAppointment(' + ${appointment.appointmentId} + ')'">
+                                <i class="fa fa-trash">
+                                </i>
+                            </button>
+                        </td>
+                    </tr>
+                    </tbody>
+                </table>
+            </div>
+
+
+
+        </div>
+        <!-- /.container-fluid -->
+
+        <div th:replace="common/header :: footer"/>
+
+    </div>
+    <!-- /.content-wrapper -->
+
+</div>
+<!-- /#wrapper -->
+
+<div th:replace="common/header :: scroll-up"/>
+
+<div th:replace="common/header :: footer-script"/>
+
+<script th:src="@{/js/appointments.js}"></script>
+
+</body>
+
+</html>

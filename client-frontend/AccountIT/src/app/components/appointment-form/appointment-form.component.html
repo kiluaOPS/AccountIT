@@ -1,0 +1,59 @@
+<div class="card">
+  <div class="card-header">
+    <h1>Appointment Form</h1>
+    <div class="card-body"></div>
+    <form #appointmentForm="ngForm" (submit)="onSubmit()">
+      <div class="form-group">
+        <label for="id">Customer Id:</label>
+        <input
+          type="text"
+          class="form-control"
+          id="id"
+          required
+          [(ngModel)]="modelCustomer.id"
+          name="id"
+        />
+      </div>
+
+      <div class="form-group">
+        <label for="injury">Injury:</label>
+        <input
+          type="text"
+          class="form-control"
+          id="injury"
+          required
+          [(ngModel)]="modelInjury.type"
+          name="injury"
+        />
+      </div>
+      <div class="form-group">
+            <label for="type">Type:</label>
+            <input
+              type="text"
+              class="form-control"
+              id="type"
+              required
+              [(ngModel)]="modelAppointment.type"
+              name="type"
+            />
+          </div>
+      <div class="form-group">
+        <label for="date-input">Date:</label>
+        <input
+          [(ngModel)]="modelAppointment.date"
+          name="date"
+          class="form-control"
+          type="date"
+          value="2011-08-19"
+          required
+        />
+      </div>
+      <div class="alert alert-danger" *ngIf="invalid">
+        <h6>Invalid Appointment, make sure the postcode is valid.</h6>
+      </div>
+      <button type="submit" class="btn btn-success">
+        Create Appointments
+      </button>
+    </form>
+  </div>
+</div>

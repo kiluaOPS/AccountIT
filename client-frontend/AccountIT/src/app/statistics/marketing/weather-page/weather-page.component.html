@@ -1,0 +1,24 @@
+
+<h6>Select a year to display weather and appointments information:</h6>
+<select (change)="onChange($event)" class="form-control" id="options">
+  <option value="" disabled selected>Select your option</option>
+  <option *ngFor="let year of years" [value]="years">
+    {{ year }}
+  </option>
+</select>
+
+<app-weather-year-graph [year]="selectedYear"></app-weather-year-graph>
+
+<app-weather-slope-graph [year]="selectedYear"></app-weather-slope-graph>
+ 
+<div class="card" style="margin-top: 75px;">
+  <div class="card-header">
+
+    Download Weather 
+  </div>
+  <div class="card-body" style="text-align: center;">
+      <h6>To download new Weather information click the button below. The process will take few minutes. You can continue your navigation in the meanwhile.</h6>
+
+      <app-weather-cvs-load></app-weather-cvs-load>
+  </div>
+</div>

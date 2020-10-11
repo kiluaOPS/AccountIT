@@ -1,0 +1,35 @@
+<div class="events">
+    <h5>Insert Events SpreadSheet</h5>
+    <div>
+      <input
+        #eventsInput
+        type="file"
+        ng2FileSelect
+        [uploader]="uploaderEvents"
+      />
+  
+      <div
+        class="drop-box"
+        ng2FileDrop
+        [ngClass]="{ dragover: isDropOver }"
+        [uploader]="uploaderEvents"
+        (fileOver)="fileOverAnother($event)"
+        (click)="eventsFileClicked()"
+      >
+        <span class="drag-in-title">Import or drag file here</span>
+        <span class="drag-over-title">Drop the file</span>
+      </div>
+    </div>
+    <div class="upload-response">
+      <div id="eventsError"></div>
+    </div>
+  </div>
+  
+  <!--/.uploadDiv-->
+  <div class="alert alert-success" *ngIf="uploadSuccess">
+    <h6>File: {{ file.name }} - File size: {{ file.size / 1000 }}kb</h6>
+  </div>
+  <div class="alert alert-danger" *ngIf="uploadError">
+    <h6>Error in loading the file</h6>
+  </div>
+  <app-spinner-load *ngIf="isLoading"></app-spinner-load>

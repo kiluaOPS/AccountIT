@@ -1,0 +1,44 @@
+<!-- if here -->
+<div *ngIf="!appointments">
+  <h3>No appointments uploaded until now</h3>
+</div>
+
+<!-- Page Content -->
+<!-- else here -->
+<div *ngIf="appointments">
+  <h5>Appointments List</h5>
+  <table class="table table-bordered">
+    <thead>
+      <tr>
+        <th>AppointmentID</th>
+        <th>CustomerID</th>
+        <th>Date</th>
+        <th>Type</th>
+        <th>Clinic</th>
+      </tr>
+    </thead>
+    <tbody>
+      <!-- for here -->
+      <tr *ngFor="let appointment of appointments; let i = index">
+        <td>
+          <button (click)="requestGetAppointmentById(appointment.id)">
+            {{ appointment.id }}
+          </button>
+        </td>
+        <td>{{ appointment.customer.id }}</td>
+        <td>{{ appointment.date }}</td>
+        <td>{{ appointment.type }}</td>
+        <td>{{ appointment.clinic.clinicName }}</td>
+        <td>
+          <button
+            class="delete-button"
+            id="appointment.id"
+            (click)="requestDeleteAppointmentById(appointment.id, i)"
+          >
+            <i class="fa fa-trash"> </i>
+          </button>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>

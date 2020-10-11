@@ -1,0 +1,90 @@
+<!-- Page Content -->
+<!-- else here -->
+<br />
+<div *ngIf="customers">
+  <div class="container">
+    <div *ngIf="customers.length < 1" class="card mb-3">
+      <div class="card-header">
+        <i class="fas fa-chart-bar"></i>
+        More data needed
+      </div>
+      <div class="card-body">
+        <p>You can upload more data <a routerLink="/upload">here.</a></p>
+      </div>
+      <div class="card-footer small text-muted"></div>
+    </div>
+  </div>
+  <div *ngIf="customers.length >= 1">
+    <div class="card mb-3">
+      <div class="card-header">
+        <i class="fas fa-table"></i>
+        Customers
+      </div>
+      <div class="card-body">
+        <h4>Select a customer by clicking on the ID to see all the relative information</h4>
+        <hr>
+        <div class="table-responsive" id="div-table">
+          <table
+            id="dataTable"
+            class="table table-bordered"
+            width="100%"
+            cellspacing="0"
+          >
+            <thead>
+              <tr>
+                <th>CustomerID</th>
+                <th>First Name</th>
+                <th>Last Name</th>
+                <th>Date of Birth</th>
+                <th>Email</th>
+                <th>Address</th>
+                <th>Referral</th>
+                <th>Delete</th>
+              </tr>
+            </thead>
+            <tfoot>
+              <tr>
+                <th>CustomerID</th>
+                <th>First Name</th>
+                <th>Last Name</th>
+                <th>Date of Birth</th>
+                <th>Email</th>
+                <th>Address</th>
+                <th>Referral</th>
+                <th>Delete</th>
+              </tr>
+            </tfoot>
+            <tbody>
+              <tr *ngFor="let customer of customers; let i = index">
+                <td>
+                  <button
+                    class="btn btn-primary"
+                    (click)="requestGetCustomerById(customer.id)"
+                  >
+                    {{ customer.id }}
+                  </button>
+                </td>
+                <td>{{ customer.firstName }}</td>
+                <td>{{ customer.lastName }}</td>
+                <td>{{ customer.dob }}</td>
+                <td>{{ customer.email }}</td>
+                <td>{{ customer.address }}</td>
+                <td>{{ customer.refType }}</td>
+                <td>
+                  <button
+                    class="btn btn-link delete-button"
+                    id="customer.id"
+                    (click)="requestDeleteCustomerById(customer.id, i)"
+                  >
+                    <i class="fa fa-trash"> </i>
+                  </button>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+      <div class="card-footer small text-muted"></div>
+    </div>
+  </div>
+</div>

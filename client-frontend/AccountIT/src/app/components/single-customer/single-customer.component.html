@@ -1,0 +1,129 @@
+<table *ngIf="customer" class="table table-bordered">
+  <thead>
+    <tr>
+      <th>ID</th>
+      <th>Name</th>
+      <th>Surname</th>
+      <th>Date</th>
+      <th>Address</th>
+      <th>Email</th>
+      <th>Referred</th>
+    </tr>
+  </thead>
+  <tbody>
+    <!-- for here -->
+    <tr *ngIf="editable">
+      <td>{{ customer.id }}</td>
+      <td>
+        <input type="text" name="firstName" [(ngModel)]="customer.firstName" />
+      </td>
+      <td>
+        <input type="text" name="lastName" [(ngModel)]="customer.lastName" />
+      </td>
+      <td>
+        <input type="date" name="dob" [(ngModel)]="customer.dob" />
+      </td>
+      <td>
+        <input type="text" name="address" [(ngModel)]="customer.address" />
+      </td>
+      <td>
+        <input type="text" name="email" [(ngModel)]="customer.email" />
+      </td>
+      <td>
+        <input type="text" name="refType" [(ngModel)]="customer.refType" />
+      </td>
+
+      <td>
+        <button (click)="saveCustomerChanges()">Save</button>
+        <button (click)="setBlocked()">Remove changes</button>
+      </td>
+    </tr>
+    <tr *ngIf="!editable">
+      <td>{{ customer.id }}</td>
+      <td>{{ customer.firstName }}</td>
+      <td>{{ customer.lastName }}</td>
+      <td><input type="date" name="dob" [(ngModel)]="customer.dob" /></td>
+      <td>{{ customer.address }}</td>
+      <td>{{ customer.email }}</td>
+      <td>{{ customer.refType }}</td>
+      <td>
+        <button (click)="setEditable()">Edit</button>
+      </td>
+    </tr>
+  </tbody>
+</table>
+
+<h4>Select the type of data you want to see:</h4>
+<ul class="nav nav-tabs" id="myTab" role="tablist">
+  <li class="nav-item">
+    <a
+      class="nav-link active"
+      id="simple-tab"
+      data-toggle="tab"
+      href="#simple-list"
+      role="tab"
+      aria-controls="simple-list"
+      aria-selected="true"
+      >Simple List</a
+    >
+  </li>
+  <li class="nav-item">
+    <a
+      class="nav-link"
+      id="injury-tab"
+      data-toggle="tab"
+      href="#injury-list"
+      role="tab"
+      aria-controls="injury-list"
+      aria-selected="false"
+      >Injury List</a
+    >
+  </li>
+  <li class="nav-item">
+    <a
+      class="nav-link"
+      id="relatives-graph-tab"
+      data-toggle="tab"
+      href="#relatives-graph"
+      role="tab"
+      aria-controls="relatives-graph"
+      aria-selected="false"
+      >Relatives Injuries Graph</a
+    >
+  </li>
+</ul>
+<div class="tab-content" id="myTabContent">
+  <div
+    class="tab-pane fade show active"
+    id="simple-list"
+    role="tabpanel"
+    aria-labelledby="simple-tab"
+  >
+    <app-appointments-list
+      *ngIf="appointments"
+      [appointments]="appointments"
+    ></app-appointments-list>
+  </div>
+  <div
+    class="tab-pane fade"
+    id="injury-list"
+    role="tabpanel"
+    aria-labelledby="injury-tab"
+  >
+    <app-adv-customer-appointments
+      *ngIf="customerId"
+      [id]="customerId"
+    ></app-adv-customer-appointments>
+  </div>
+  <div
+    class="tab-pane fade"
+    id="relatives-graph"
+    role="tabpanel"
+    aria-labelledby="relatives-graph-tab"
+  >
+    <app-relatives-injury-graph
+      *ngIf="customerId"
+      [customerId]="customerId"
+    ></app-relatives-injury-graph>
+  </div>
+</div>

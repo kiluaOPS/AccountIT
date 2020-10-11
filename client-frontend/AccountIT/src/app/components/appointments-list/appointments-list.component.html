@@ -1,0 +1,83 @@
+<!-- Page Content -->
+<!-- else here -->
+<br />
+<div *ngIf="appointments">
+  <div class="container">
+    <div *ngIf="appointments.length < 1" class="card mb-3">
+      <div class="card-header">
+        <i class="fas fa-chart-bar"></i>
+        More data needed
+      </div>
+      <div class="card-body">
+        <h5> {{ message }}</h5>
+        <p>You can upload more data <a routerLink="/upload">here.</a></p>
+      </div>
+      <div class="card-footer small text-muted"></div>
+    </div>
+  </div>
+  <div *ngIf="appointments.length >= 1">
+    <div class="card mb-3">
+      <div class="card-header">
+        <i class="fas fa-table"></i>
+        Appointments
+      </div>
+      <div class="card-body">
+        <div class="table-responsive" id="div-table">
+          <table
+            id="dataTable"
+            class="table table-bordered"
+            width="100%"
+            cellspacing="0"
+          >
+            <thead>
+              <tr>
+                <th>AppointmentID</th>
+                <th>CustomerID</th>
+                <th>Date</th>
+                <th>Type</th>
+                <th>Injury</th>
+                <th>Delete</th>
+              </tr>
+            </thead>
+            <tfoot>
+              <tr>
+                <th>AppointmentID</th>
+                <th>CustomerID</th>
+                <th>Date</th>
+                <th>Type</th>
+                <th>Injury</th>
+                <th>Delete</th>
+              </tr>
+            </tfoot>
+            <tbody>
+              <tr *ngFor="let appointment of appointments; let i = index">
+                <td>
+                  <button
+                    class="btn btn-primary"
+                    (click)="requestGetAppointmentById(appointment.id)"
+                  >
+                    {{ appointment.id }}
+                  </button>
+                </td>
+                <td>{{ appointment.customer.id }}</td>
+                <td>{{ appointment.date }}</td>
+                <td>{{ appointment.type }}</td>
+                <td>{{ appointment.injury.type }}</td>
+                <td>
+                  <button
+                    class="btn btn-link delete-button"
+                    id="appointment.id"
+                    (click)="requestDeleteAppointmentById(appointment.id, i)"
+                  >
+                    <i class="fa fa-trash"> </i>
+                  </button>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+      <div class="card-footer small text-muted"></div>
+    </div>
+  </div>
+</div>

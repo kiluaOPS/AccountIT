@@ -1,0 +1,76 @@
+<table *ngIf="customer" class="table table-bordered">
+  <thead>
+    <tr>
+      <th>ID</th>
+      <th>Name</th>
+      <th>Surname</th>
+      <th>Date</th>
+      <th>Address</th>
+      <th>Email</th>
+      <th>Referred</th>
+    </tr>
+  </thead>
+  <tbody>
+    <!-- for here -->
+    <tr *ngIf="editable">
+      <td>{{ customer.id }}</td>
+      <td>
+        <input type="text" name="firstName" [(ngModel)]="customer.firstName" />
+      </td>
+      <td>
+        <input type="text" name="lastName" [(ngModel)]="customer.lastName" />
+      </td>
+      <td>
+        <input type="date" name="dob" [(ngModel)]="customer.dob" />
+      </td>
+      <td>
+        <input type="text" name="address" [(ngModel)]="customer.address" />
+      </td>
+      <td>
+        <input type="text" name="email" [(ngModel)]="customer.email" />
+      </td>
+      <td>
+        <input type="text" name="refType" [(ngModel)]="customer.refType" />
+      </td>
+
+      <td>
+        <button (click)="saveCustomerChanges()">Save</button>
+        <button (click)="setBlocked()">Remove changes</button>
+      </td>
+    </tr>
+    <tr *ngIf="!editable">
+      <td>{{ customer.id }}</td>
+      <td>{{ customer.firstName }}</td>
+      <td>{{ customer.lastName }}</td>
+      <td><input type="date" name="dob" [(ngModel)]="customer.dob" /></td>
+      <td>{{ customer.address }}</td>
+      <td>{{ customer.email }}</td>
+      <td>{{ customer.refType }}</td>
+      <td>
+        <button (click)="setEditable()">Edit</button>
+      </td>
+    </tr>
+  </tbody>
+</table>
+<div class="row" *ngIf="appointmentsSets">
+  <div *ngFor="let appointmentsList of appointmentsSets" class="col-6">
+    <table class="table table-bordered">
+      <thead>
+        <tr>
+          <th>Date</th>
+          <th>Injury</th>
+          <th>Type</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let appointment of appointmentsList.appointments">
+          <td>
+            <input type="date" name="dob" [(ngModel)]="appointment.date" />
+          </td>
+          <td>{{ appointment.injury.type }}</td>
+          <td>{{ appointment.type }}</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>

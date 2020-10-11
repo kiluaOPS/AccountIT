@@ -1,0 +1,47 @@
+<div class="container">
+  <div class="card login hoverable">
+    <div class="card-image">
+      <img
+        src="https://upload.wikimedia.org/wikipedia/commons/thumb/d/d3/Microsoft_Account.svg/200px-Microsoft_Account.svg.png"
+        class="responsive-img"
+      />
+      <h3 class="card-title">Please Login</h3>
+    </div>
+    <div class="card-content">
+      <form [formGroup]="form" (ngSubmit)="onSubmit()" class="col s12">
+        <div class="row">
+          <div class="input-field col s12">
+            <input placeholder="User" formControlName="userName" required />
+            <label for="email">Enter your username</label>
+            <div class="alert alert-warning" *ngIf="isFieldInvalid('userName')">
+              Please insert your user name
+            </div>
+          </div>
+
+          <div class="input-field col s12">
+            <input
+              type="password"
+              placeholder="Password"
+              formControlName="password"
+              required
+            />
+            <label for="password">Enter your password</label>
+            <div class="alert alert-warning" *ngIf="isFieldInvalid('password')">
+              Please insert your password
+            </div>
+          </div>
+        </div>
+
+        <div class="row">
+          <button
+            type="submit"
+            name="btn_login"
+            class="col s12 btn btn-success"
+          >
+            Login
+          </button>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,28 @@
+<div *ngIf="lineChartData">
+  <div *ngIf="lineChartData.length < 1">
+    <h5>Not enough data uploaded</h5>
+    <p>You can upload more data <a routerLink="/upload">here.</a></p>
+  </div>
+  <div *ngIf="!(lineChartData.length < 1)" class="card mb-3">
+    <div class="card-header">
+      <i class="fas fa-chart-pie"></i>
+      {{ title }}
+    </div>
+    <div class="card-body">
+      <canvas
+        baseChart
+        width="80%"
+        height="35"
+        [datasets]="lineChartData"
+        [labels]="lineChartLabels"
+        [legend]="lineChartLegend"
+        [chartType]="lineChartType"
+        [options]="lineChartOptions"
+        [colors]="lineChartColors"
+      ></canvas>
+    </div>
+    <div class="card-footer small text-muted"></div>
+  </div>
+</div>
+
+<!-- [colors]="pieChartColors" -->

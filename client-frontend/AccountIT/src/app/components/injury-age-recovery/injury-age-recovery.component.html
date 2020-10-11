@@ -1,0 +1,12 @@
+<app-bubble-chart
+  *ngIf="dataBubble"
+  [description]="description"
+  [bubbleTitle]="title"
+  [bubbleChartData]="dataBubble"
+  [bubbleChartOptions]="options"
+></app-bubble-chart>
+<app-radar-graph
+  [radarTitle]="title"
+  [radarChartData]="dataRadar"
+  [radarChartLabels]="labels"
+></app-radar-graph>

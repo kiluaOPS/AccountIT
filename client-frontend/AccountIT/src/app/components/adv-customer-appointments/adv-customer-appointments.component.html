@@ -1,0 +1,33 @@
+<div *ngIf="appointmentsSets">
+  <div *ngIf="appointmentsSets.length < 1">
+    <h5>No appointments uploaded</h5>
+    <p>You can upload more data <a routerLink="/upload">here.</a></p>
+  </div>
+  <div class="row"> 
+    <div class="col-12">
+      <p>Customer appointments are divided by injury and by date. Date subdivision make use of the value
+         of "Maximum number of days between two appointments" that can be modified in settings.
+      </p>
+    </div>
+    <div *ngFor="let appointmentsList of appointmentsSets" class="col-6">
+      <table class="table table-bordered">
+        <thead>
+          <tr>
+            <th>Date</th>
+            <th>Injury</th>
+            <th>Type</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let appointment of appointmentsList.appointments">
+            <td>
+              <input type="date" name="dob" [(ngModel)]="appointment.date" />
+            </td>
+            <td>{{ appointment.injury.type }}</td>
+            <td>{{ appointment.type }}</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>

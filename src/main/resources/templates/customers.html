@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+
+<head th:replace="common/header :: common-header"/>
+
+
+<body id="page-top">
+
+<div th:replace="common/header :: navbar"/>
+
+
+<div id="wrapper">
+
+    <div th:replace="common/header :: sidebar"/>
+
+    <div id="content-wrapper">
+
+        <div class="container-fluid">
+
+            <!-- Breadcrumbs-->
+            <ol class="breadcrumb">
+                <li class="breadcrumb-item">
+                    <a th:href="@{/}">Dashboard</a>
+                </li>
+                <li class="breadcrumb-item active">Customers</li>
+            </ol>
+
+            <div th:if="${#lists.size(customers) == 0}">
+                <h3>No customers uploaded until now</h3>
+            </div>
+
+
+            <!-- Page Content -->
+            <div th:unless="${#lists.size(customers) == 0}">
+                <h5>Customer List</h5>
+                <table class="table table-bordered">
+                    <thead>
+                    <tr>
+                        <th>ID</th>
+                        <th>Name</th>
+                        <th>Surname</th>
+                        <th>Date</th>
+                        <th>Address</th>
+                        <th>Email</th>
+                        <th>Referred</th>
+
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr th:each="customer : ${customers}">
+                        <td><a th:text="${customer.id}" th:href="@{/customers/customer(id=${customer.id})}"></a></td>
+                        <td th:text="${customer.firstName}"></td>
+                        <td th:text="${customer.lastName}"></td>
+                        <td th:text="${#temporals.format(customer.dob, 'dd-MM-yyyy')}"></td>
+                        <td th:text="${customer.address}"></td>
+                        <td th:text="${customer.email}"></td>
+                        <td th:text="${customer.refType}"></td>
+                        <td>
+                            <button class="delete-button" th:id="${customer.id}"
+                                    th:onclick="'deleteCustomer(' + ${customer.id} + ')'">
+                                <i class="fa fa-trash">
+                                </i>
+                            </button>
+                        </td>
+                    </tr>
+                    </tbody>
+                </table>
+            </div>
+
+
+
+        </div>
+        <!-- /.container-fluid -->
+
+        <div th:replace="common/header :: footer"/>
+
+    </div>
+    <!-- /.content-wrapper -->
+
+</div>
+<!-- /#wrapper -->
+
+<div th:replace="common/header :: scroll-up"/>
+
+<div th:replace="common/header :: footer-script"/>
+
+<script th:src="@{/js/customers.js}"></script>
+
+</body>
+
+</html>

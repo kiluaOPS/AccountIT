@@ -1,0 +1,21 @@
+<div class="container">
+  <div *ngIf="!value" class="card mb-3">
+    <div class="card-header">
+      <i class="fas fa-chart-bar"></i>
+      More Data Needed
+    </div>
+    <div class="card-body">
+      <h5>No customers uploaded</h5>
+      <p>Register more customers to allow us to analyze your data.</p>
+      <p>You can upload more data <a routerLink="/upload">here.</a></p>
+    </div>
+    <div class="card-footer small text-muted"></div>
+  </div>
+</div>
+<app-pie-chart
+  *ngIf="value"
+  [legend]="true"
+  [pieChartLabels]="typeReferral"
+  [pieChartData]="value"
+  [title]="title"
+></app-pie-chart>

@@ -1,0 +1,41 @@
+<div class="container">
+  <div *ngIf="!fillingRates" class="card mb-3">
+    <div class="card-header">
+      <i class="fas fa-chart-bar"></i>
+      More Data Needed
+    </div>
+    <div class="card-body">
+      <h5>No appointments uploaded</h5>
+      <p>
+        In order to give indication on the montlhy filling rates some
+        appointments must be present in the database
+      </p>
+      <p>You can upload more data <a routerLink="/upload">here.</a></p>
+    </div>
+    <div class="card-footer small text-muted"></div>
+  </div>
+</div>
+<div *ngIf="fillingRates">
+  <div *ngIf="fillingRates.length > 1">
+    <select
+      id="inputState"
+      class="form-control"
+      [ngModel]="selected"
+      (ngModelChange)="onChange($event)"
+      name="sel2"
+    >
+      <option [value]="item" *ngFor="let item of yearValues; let i = index">{{
+        item
+      }}</option>
+    </select>
+
+    <app-bar-chart
+      [description] = "description"
+      [barChartData]="fillingRates"
+      [barChartLabels]="fillingLabels"
+      [title]="title"
+      [barChartColors]="colors"
+      [options]="options"
+    ></app-bar-chart>
+  </div>
+</div>

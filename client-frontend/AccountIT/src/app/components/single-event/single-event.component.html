@@ -1,0 +1,117 @@
+<br />
+<br />
+
+<div *ngIf="event">
+  <table class="table table-bordered" width="100%" cellspacing="0">
+    <thead>
+      <tr>
+        <th>Event ID</th>
+        <th>Name</th>
+        <th>Date</th>
+        <th>Address</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>{{ event.id }}</td>
+        <td>{{ event.name }}</td>
+        <td>{{ event.date }}</td>
+        <td>{{ event.address }}</td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+
+<app-customers-list
+  *ngIf="customers"
+  [customers]="customers"
+></app-customers-list>
+
+<div class="card text-center">
+  <div class="card-header">
+    Event Map
+  </div>
+  <div class="card-body" style="padding-left: 200px; ">
+    <div class="row">
+      <div class="col-10 justify-content-end">
+        <div class="range" style="text-align: center">
+          <label for="distanceRange"><h5>Distance:</h5></label>
+          <input
+            type="range"
+            class="custom-range"
+            min="1000"
+            max="15000"
+            step="1000"
+            id="distanceRange"
+            list="steplist"
+            (input)="valueChanged($event.target.value)"
+          />
+          <div class="ticks">
+            <!-- You can generate the ticks based on your min, max & step values. -->
+            <span class="tick">1km</span>
+            <span class="tick">2km</span>
+            <span class="tick">3km</span>
+            <span class="tick">4km</span>
+            <span class="tick">5km</span>
+            <span class="tick">6km</span>
+            <span class="tick">7km</span>
+            <span class="tick">8km</span>
+            <span class="tick">9km</span>
+            <span class="tick">10km</span>
+            <span class="tick">11km</span>
+            <span class="tick">12km</span>
+            <span class="tick">13km</span>
+            <span class="tick">14km</span>
+            <span class="tick">15km</span>
+          </div>
+        </div>
+      </div>
+      <div class="col-10 justify-content-md-center">
+        <div class="card-body">
+          <agm-map
+            *ngIf="event"
+            [latitude]="eventLatLng.lat()"
+            [longitude]="eventLatLng.lng()"
+            [mapTypeId]="mapType"
+            [zoom]="zoom"
+            [scrollwheel]="null"
+          >
+            <agm-marker
+              [latitude]="eventLatLng.lat()"
+              [longitude]="eventLatLng.lng()"
+              [label]="'E'"
+            >
+              <agm-info-window>
+                <strong>Event:{{ event.name }}</strong>
+              </agm-info-window></agm-marker
+            >
+            <agm-marker
+              *ngFor="let marker of markers"
+              [latitude]="marker.latLng.lat()"
+              [longitude]="marker.latLng.lng()"
+              [label]="marker.customer.id + ''"
+            >
+              <agm-info-window>
+                <a [routerLink]="['/customer', marker.customer.id]"
+                  ><strong
+                    >Customer: {{ marker.customer.firstName }}
+                    {{ marker.customer.lastName }}</strong
+                  ></a
+                >
+              </agm-info-window>
+            </agm-marker>
+            <agm-circle
+              [latitude]="eventLatLng.lat()"
+              [longitude]="eventLatLng.lng()"
+              [radius]="distance"
+              [fillColor]="'#4dc2f0'"
+              [circleDraggable]="false"
+              [editable]="false"
+            >
+            </agm-circle>
+          </agm-map>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

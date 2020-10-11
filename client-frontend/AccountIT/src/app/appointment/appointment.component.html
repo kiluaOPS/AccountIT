@@ -1,0 +1,38 @@
+<table *ngIf="appointment" class="table table-bordered">
+  <thead>
+    <tr>
+      <th>AppointmentID</th>
+      <th>CustomerID</th>
+      <th>Date</th>
+      <th>Type</th>
+      <th>Clinic</th>
+    </tr>
+  </thead>
+  <tbody>
+    <!-- for here -->
+    <tr *ngIf="editable">
+      <td>{{ appointment.id }}</td>
+      <td>{{ appointment.customer.id }}</td>
+      <td>
+        <input type="date" name="Date" [(ngModel)]="appointment.date" />
+      </td>
+      <td>{{ appointment.type }}</td>
+      <td>{{ appointment.clinic.clinicName }}</td>
+
+      <td>
+        <button (click)="saveAppointmentsChanges()">Save</button>
+        <button (click)="setBlocked()">Remove changes</button>
+      </td>
+    </tr>
+    <tr *ngIf="!editable">
+      <td>{{ appointment.id }}</td>
+      <td>{{ appointment.customer.id }}</td>
+      <td><input type="date" name="date" [(ngModel)]="appointment.date" /></td>
+      <td>{{ appointment.type }}</td>
+      <td>{{ appointment.clinic.clinicName }}</td>
+      <td>
+        <button (click)="setEditable()">Edit Date</button>
+      </td>
+    </tr>
+  </tbody>
+</table>
